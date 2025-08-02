@@ -114,21 +114,32 @@ def get_maturity_category(day_prediction):
 
 # Fungsi prediksi
 def predict_banana_maturity(model, image):
-    class_labels = ['Day 0', 'Day 1', 'Day 3', 'Day 5', 'Day 7', 'Day 9']
-    
+    # Sesuaikan urutan label
+    class_labels = ['0', '1', '3', '5', '7', '9']
+    day_map = {
+        '0': 'Day 0',
+        '1': 'Day 1',
+        '3': 'Day 3',
+        '5': 'Day 5',
+        '7': 'Day 7',
+        '9': 'Day 9'
+    }
+
     # Preprocessing
     processed_image = preprocess_image(image)
     
     # Prediksi
     predictions = model.predict(processed_image, verbose=0)
-    
     predicted_class_idx = np.argmax(predictions[0])
-    confidence = float(predictions[0][predicted_class_idx]) * 100
+    predicted_label = class_labels[predicted_class_idx]
     
-    predicted_day = class_labels[predicted_class_idx]
+    confidence = float(predictions[0][predicted_class_idx]) * 100
+    predicted_day = day_map[predicted_label]  # Convert ke Day X
+
     category, color = get_maturity_category(predicted_day)
     
     return predicted_day, category, confidence, color
+
 
 # Header aplikasi
 st.markdown('<h1 class="main-header">🍌 Klasifikasi Kematangan Pisang Cavendish</h1>', 
@@ -257,4 +268,5 @@ st.markdown("""
     🍌 Aplikasi Klasifikasi Kematangan Pisang Cavendish<br>
     Menggunakan CNN (MobileNetV2) untuk prediksi tingkat kematangan pisang
 </div>
+
 """, unsafe_allow_html=True)
