@@ -192,28 +192,6 @@ with col1:
             camera_image = Image.open(camera_image)
             st.image(camera_image, caption="Gambar dari kamera", width=400)
 
-with col2:
-    st.markdown('<div class="info-box">', unsafe_allow_html=True)
-    st.markdown("### 📊 Legenda Kematangan")
-    st.markdown("""
-    **🟢 Day 0-1: Hijau Mentah**
-    - Pisang masih mentah
-    - Warna hijau dominan
-    - Belum siap dikonsumsi
-    
-    **🟡 Day 3-5: Matang Optimal**  
-    - Pisang matang sempurna
-    - Warna kuning cerah
-    - Siap dikonsumsi
-    
-    **🟤 Day 7-9: Cenderung Busuk**
-    - Pisang terlalu matang
-    - Mulai muncul bintik coklat
-    - Segera dikonsumsi
-
-    """)
-    st.markdown('</div>', unsafe_allow_html=True)
-
 # Load model
 model = load_model()
 
@@ -292,3 +270,4 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
