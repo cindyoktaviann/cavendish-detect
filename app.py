@@ -191,7 +191,20 @@ with col1:
         if camera_image:
             camera_image = Image.open(camera_image)
             st.image(camera_image, caption="Gambar dari kamera", width=400)
+with col2:
+    st.markdown('<div class="info-box">', unsafe_allow_html=True)
+    st.markdown("### 📊 Legenda Kematangan")
+    st.markdown("""
+    **🟢 Hijau Mentah**
+    
+    **🟡 Matang Optimal**  
 
+    **🟤 Terlalu Matang**
+
+
+    """)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
 # Load model
 model = load_model()
 
@@ -270,4 +283,5 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
